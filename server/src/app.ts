@@ -22,10 +22,10 @@ app.use(requestLogger);
 // Foundational Route: GET /health
 app.get('/health', (_req, res) => {
   res.status(200).json({
-    status: 'ok',
+    status: 'healthy',
     version: '1.0.0',
     environment: env.NODE_ENV,
-    uptime: process.uptime(),
+    uptime: `${process.uptime().toFixed(3)}s`,
     timestamp: new Date().toISOString(),
   });
 });

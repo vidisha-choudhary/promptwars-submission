@@ -8,7 +8,7 @@ describe('Express Server Foundation', () => {
       const response = await request(app).get('/health');
 
       expect(response.status).toBe(200);
-      expect(response.body).toHaveProperty('status', 'ok');
+      expect(response.body).toHaveProperty('status', 'healthy');
       expect(response.body).toHaveProperty('version', '1.0.0');
       expect(response.body).toHaveProperty('environment', 'test');
       expect(response.body).toHaveProperty('uptime');
