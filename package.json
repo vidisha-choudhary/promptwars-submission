@@ -13,8 +13,6 @@
     "shared"
   ],
   "scripts": {
-    "dev": "echo \"Running dev server... No active app services in Phase 1.\"",
-    "build": "echo \"Building workspaces... No active build steps in Phase 1.\"",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
