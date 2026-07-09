@@ -1,12 +1,9 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
-import { Sun, Moon } from 'lucide-react';
-import useTheme from '../hooks/useTheme';
+import ThemeToggle from '../components/ThemeToggle';
 import SkipToContent from '../components/SkipToContent';
 
 export const RootLayout: React.FC = () => {
-  const { theme, toggleTheme } = useTheme();
-
   return (
     <div className="app-container">
       <SkipToContent />
@@ -40,18 +37,9 @@ export const RootLayout: React.FC = () => {
             Settings
           </NavLink>
         </nav>
-        <button
-          onClick={toggleTheme}
-          aria-label={`Toggle theme (currently ${theme})`}
-          className="btn-primary"
-          style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '8px' }}
-        >
-          {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
-        </button>
+        <ThemeToggle />
       </header>
-      <main id="main-content" className="layout-main" role="main" tabIndex={-1}>
-        <Outlet />
-      </main>
+      <Outlet />
     </div>
   );
 };
