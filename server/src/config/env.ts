@@ -9,6 +9,14 @@ const envSchema = z.object({
   PORT: z.coerce.number().default(5000),
   NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
   GEMINI_API_KEY: z.string().optional(),
+}).refine((data) => {
+  if (data.NODE_ENV === 'production' && !data.GEMINI_API_KEY) {
+    return false;
+  }
+  return true;
+}, {
+  message: 'GEMINI_API_KEY is required in production environment',
+  path: ['GEMINI_API_KEY'],
 });
 
 const result = envSchema.safeParse(process.env);

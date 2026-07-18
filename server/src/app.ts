@@ -6,6 +6,7 @@ import requestLogger from './middleware/req-logger';
 import errorHandler from './errors/middleware';
 import { NotFoundError } from './errors/app-error';
 import { env } from './config/env';
+import copilotRouter from './routes/copilot';
 
 const app = express();
 
@@ -18,6 +19,9 @@ app.use(express.urlencoded({ extended: true }));
 
 // Attach HTTP request logs tracker
 app.use(requestLogger);
+
+// Register API Routes
+app.use('/api/v1/copilot', copilotRouter);
 
 // Foundational Route: GET /health
 app.get('/health', (_req, res) => {
