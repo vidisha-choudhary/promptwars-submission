@@ -1,35 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import TelemetryPanel from '../components/TelemetryPanel';
 import DecisionSupportPanel from '../components/DecisionSupportPanel';
 import CopilotPanel from '../components/CopilotPanel';
-import { initialGates, initialIncidents, initialSentiment } from '../data/mockData';
-import { GateTelemetry, Incident, SentimentMetrics, CopilotResponse } from '../types/copilot.types';
+import useCommandCenter from '../hooks/useCommandCenter';
 
 export const Organizer: React.FC = () => {
-  // Real-time telemetry states
-  const [gates] = useState<GateTelemetry[]>(initialGates);
-  const [incidents] = useState<Incident[]>(initialIncidents);
-  const [sentiment] = useState<SentimentMetrics>(initialSentiment);
-
-  // Latest AI reasoning response received from the Copilot Panel
-  const [latestResponse, setLatestResponse] = useState<CopilotResponse | null>(null);
-
-  // Telemetry getter passed to Copilot
-  const getTelemetryData = () => {
-    return {
-      gates,
-      incidents,
-      sentiment
-    };
-  };
-
-  // Handler to receive AI response from the Copilot Panel
-  const handleResponseReceived = (response: CopilotResponse) => {
-    setLatestResponse(response);
-  };
+  const {
+    gates,
+    incidents,
+    sentiment,
+    latestResponse,
+    getTelemetryData,
+    handleResponseReceived
+  } = useCommandCenter();
 
   return (
-    <div className="organizer-portal-layout fade-in" style={{ padding: '0 var(--spacing-sm) var(--spacing-lg) var(--spacing-sm)' }}>
+    <div className="organizer-portal-layout fade-in">
       {/* 1. LEFT COLUMN: Live Operational Telemetry (What is happening?) */}
       <TelemetryPanel 
         gates={gates} 
