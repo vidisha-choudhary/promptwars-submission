@@ -22,6 +22,25 @@ describe('Express Server Foundation', () => {
     });
   });
 
+  describe('GET and HEAD /', () => {
+    it('should return 200 OK and valid status json on GET', async () => {
+      const response = await request(app).get('/');
+
+      expect(response.status).toBe(200);
+      expect(response.body).toHaveProperty('service', 'ArenaMind AI Backend');
+      expect(response.body).toHaveProperty('status', 'running');
+      expect(response.body).toHaveProperty('environment');
+      expect(response.body).toHaveProperty('timestamp');
+    });
+
+    it('should return 200 OK and no body on HEAD', async () => {
+      const response = await request(app).head('/');
+
+      expect(response.status).toBe(200);
+      expect(response.text).toBeUndefined();
+    });
+  });
+
   describe('Security Configurations', () => {
     it('should enable standard Helmet headers', async () => {
       const response = await request(app).get('/health');

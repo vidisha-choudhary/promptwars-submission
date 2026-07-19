@@ -23,6 +23,16 @@ app.use(requestLogger);
 // Register API Routes
 app.use('/api/v1/copilot', copilotRouter);
 
+// Root route confirmation: GET / and HEAD /
+app.get('/', (_req, res) => {
+  res.status(200).json({
+    service: 'ArenaMind AI Backend',
+    status: 'running',
+    environment: env.NODE_ENV,
+    timestamp: new Date().toISOString(),
+  });
+});
+
 // Foundational Route: GET /health
 app.get('/health', (_req, res) => {
   res.status(200).json({
