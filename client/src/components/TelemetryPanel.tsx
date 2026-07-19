@@ -140,7 +140,7 @@ export const TelemetryPanel: React.FC<TelemetryPanelProps> = ({ gates, incidents
   return (
     <div className="telemetry-pane" role="region" aria-label="Live Telemetry Panel">
       <div className="telemetry-stream-header">
-        <Radio size={14} className="inline-icon" style={{ animation: 'pulse-glow 1.5s infinite ease-in-out' }} />
+        <Radio size={14} className="inline-icon pulsing-icon" />
         <span>LIVE DATA STREAMING</span>
       </div>
       <GateStatusFeed gates={gates} />

@@ -1459,3 +1459,33 @@ textarea:focus-visible {
   font-weight: 500;
 }
 
+.logo-accent {
+  color: var(--primary-accent);
+}
+
+.alternative-text {
+  font-style: italic;
+}
+
+.action-btn-centered {
+  justify-content: center;
+  padding: 6px;
+}
+
+.action-btn-centered-approved {
+  justify-content: center;
+  padding: 6px;
+  background-color: rgba(16, 185, 129, 0.05);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.pulsing-icon {
+  animation: pulse-glow 1.5s infinite ease-in-out;
+}
+
+.not-found-title {
+  font-family: var(--font-title);
+  font-size: 28px;
+  color: var(--error);
+}
+

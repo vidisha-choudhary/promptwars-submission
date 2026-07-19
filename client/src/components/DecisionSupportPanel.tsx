@@ -93,7 +93,7 @@ export const OperationalRecommendationCard: React.FC<{
           {recommendation.alternativeConsidered && (
             <div>
               <span className="recommendation-section-label">Alternative Considered & Rejected</span>
-              <p className="recommendation-section-text" style={{ fontStyle: 'italic' }}>
+              <p className="recommendation-section-text alternative-text">
                 {recommendation.alternativeConsidered}
               </p>
             </div>
@@ -102,29 +102,25 @@ export const OperationalRecommendationCard: React.FC<{
           {/* Action buttons section */}
           <div className="recommendation-card-actions">
             <button 
-              className="quick-action-btn" 
-              style={{ justifyContent: 'center', padding: '6px' }}
+              className="quick-action-btn action-btn-centered" 
               onClick={() => setActionStatus('Under Review')}
             >
               Review Recommendation
             </button>
             <button 
-              className="quick-action-btn" 
-              style={{ justifyContent: 'center', padding: '6px', backgroundColor: 'rgba(16, 185, 129, 0.05)', borderColor: 'rgba(16, 185, 129, 0.3)' }}
+              className="quick-action-btn action-btn-centered-approved" 
               onClick={() => setActionStatus('Approved')}
             >
               Approve Recommendation
             </button>
             <button 
-              className="quick-action-btn" 
-              style={{ justifyContent: 'center', padding: '6px' }}
+              className="quick-action-btn action-btn-centered" 
               onClick={() => setActionStatus('Response Plan Gen')}
             >
               Generate Response Plan
             </button>
             <button 
-              className="quick-action-btn" 
-              style={{ justifyContent: 'center', padding: '6px' }}
+              className="quick-action-btn action-btn-centered" 
               onClick={() => setActionStatus('Exec Plan Loaded')}
             >
               View Execution Plan

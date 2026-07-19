@@ -10,7 +10,7 @@ export const RootLayout: React.FC = () => {
       <header className="layout-header" role="banner">
         <div className="header-brand-group">
           <h1 className="header-title">
-            ArenaMind <span style={{ color: 'var(--primary-accent)' }}>AI</span>
+            ArenaMind <span className="logo-accent">AI</span>
           </h1>
           <span className="header-badge">
             AI Operations Command Center
