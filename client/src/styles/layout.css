@@ -66,18 +66,25 @@
 /* Organizer Portal Layout Grid */
 .organizer-portal-layout {
   display: grid;
-  grid-template-columns: 1fr 420px;
+  grid-template-columns: 1.1fr 1.2fr 400px;
   gap: var(--spacing-lg);
   align-items: start;
   width: 100%;
   max-width: 100%;
 }
 
-.main-dashboard-pane {
+.telemetry-pane {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-lg);
-  min-width: 0; /* Prevents flex children blowout */
+  min-width: 0;
+}
+
+.decision-support-pane {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  min-width: 0;
 }
 
 .copilot-side-pane {
@@ -89,13 +96,23 @@
   min-height: 550px;
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1300px) {
+  .organizer-portal-layout {
+    grid-template-columns: 1fr 1fr;
+  }
+  .copilot-side-pane {
+    grid-column: span 2;
+    position: relative;
+    top: 0;
+    height: auto;
+  }
+}
+
+@media (max-width: 850px) {
   .organizer-portal-layout {
     grid-template-columns: 1fr;
   }
   .copilot-side-pane {
-    position: relative;
-    top: 0;
-    height: auto;
+    grid-column: span 1;
   }
 }

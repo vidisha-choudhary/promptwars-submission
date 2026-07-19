@@ -23,6 +23,6 @@ describe('Vite + React Frontend Foundation', () => {
   it('should render the app shell successfully', () => {
     render(<App />);
     expect(screen.getByRole('banner')).toBeInTheDocument();
-    expect(screen.getByText('Welcome to ArenaMind AI')).toBeInTheDocument();
+    expect(screen.getByText('AI Operations Command Center')).toBeInTheDocument();
   });
 });

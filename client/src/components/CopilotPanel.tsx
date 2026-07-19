@@ -14,6 +14,7 @@ interface CopilotPanelProps {
     incidents: Incident[];
     sentiment: SentimentMetrics;
   };
+  onResponseReceived?: (response: CopilotResponse) => void;
 }
 
 interface HistoryItem {
@@ -24,7 +25,7 @@ interface HistoryItem {
   response: CopilotResponse;
 }
 
-export const CopilotPanel: React.FC<CopilotPanelProps> = ({ getTelemetryData }) => {
+export const CopilotPanel: React.FC<CopilotPanelProps> = ({ getTelemetryData, onResponseReceived }) => {
   const [userMessage, setUserMessage] = useState('');
   const [scenario, setScenario] = useState<SimulatedScenario>('none');
   const [targetLanguage, setTargetLanguage] = useState<AnnouncementLanguage>('english');
@@ -36,7 +37,9 @@ export const CopilotPanel: React.FC<CopilotPanelProps> = ({ getTelemetryData }) 
   const historyEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    historyEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (historyEndRef.current && typeof historyEndRef.current.scrollIntoView === 'function') {
+      historyEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
   }, [history, loading]);
 
   const getApiUrl = (path: string) => {
@@ -82,6 +85,10 @@ export const CopilotPanel: React.FC<CopilotPanelProps> = ({ getTelemetryData }) 
 
       if (!data.success) {
         throw new Error('Failed to generate operational insights');
+      }
+
+      if (onResponseReceived) {
+        onResponseReceived(data);
       }
 
 
