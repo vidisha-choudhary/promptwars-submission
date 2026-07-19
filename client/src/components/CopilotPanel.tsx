@@ -43,9 +43,8 @@ export const CopilotPanel: React.FC<CopilotPanelProps> = ({ getTelemetryData, on
   }, [history, loading]);
 
   const getApiUrl = (path: string) => {
-    const isDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-    const base = isDev ? 'http://localhost:5000' : '';
-    return `${base}${path}`;
+    const baseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+    return `${baseUrl}${path}`;
   };
 
   const handleReason = async (overridePrompt?: string) => {
