@@ -43,7 +43,7 @@ export const CopilotPanel: React.FC<CopilotPanelProps> = ({ getTelemetryData, on
   }, [history, loading]);
 
   const getApiUrl = (path: string) => {
-    const baseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+    const baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
     return `${baseUrl}${path}`;
   };
 
