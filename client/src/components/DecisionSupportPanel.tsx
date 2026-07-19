@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { CopilotResponse, GateTelemetry, Incident } from '../types/copilot.types';
 import { buildRecommendations, StructuredRecommendation } from '../services/recommendationService';
 import { Brain, ChevronDown, ChevronUp } from 'lucide-react';
@@ -11,7 +11,7 @@ interface DecisionSupportPanelProps {
 
 export const OperationalRecommendationCard: React.FC<{
   recommendation: StructuredRecommendation;
-}> = ({ recommendation }) => {
+}> = React.memo(({ recommendation }) => {
   const [actionStatus, setActionStatus] = useState<string | null>(null);
   const [isExpanded, setIsExpanded] = useState(true);
 
@@ -131,14 +131,16 @@ export const OperationalRecommendationCard: React.FC<{
       )}
     </div>
   );
-};
+});
 
-export const DecisionSupportPanel: React.FC<DecisionSupportPanelProps> = ({
+export const DecisionSupportPanel: React.FC<DecisionSupportPanelProps> = React.memo(({
   latestResponse,
   gates,
   incidents
 }) => {
-  const recommendations = buildRecommendations(latestResponse, gates, incidents);
+  const recommendations = useMemo(() => {
+    return buildRecommendations(latestResponse, gates, incidents);
+  }, [latestResponse, gates, incidents]);
 
   return (
     <div className="decision-support-pane" role="region" aria-label="AI Decision Support Panel">
@@ -154,6 +156,6 @@ export const DecisionSupportPanel: React.FC<DecisionSupportPanelProps> = ({
       </div>
     </div>
   );
-};
+});
 
 export default DecisionSupportPanel;

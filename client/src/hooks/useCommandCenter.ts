@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { GateTelemetry, Incident, SentimentMetrics, CopilotResponse } from '../types/copilot.types';
 import { initialGates, initialIncidents, initialSentiment } from '../data/mockData';
 
@@ -8,17 +8,17 @@ export const useCommandCenter = () => {
   const [sentiment] = useState<SentimentMetrics>(initialSentiment);
   const [latestResponse, setLatestResponse] = useState<CopilotResponse | null>(null);
 
-  const getTelemetryData = () => {
+  const getTelemetryData = useCallback(() => {
     return {
       gates,
       incidents,
       sentiment
     };
-  };
+  }, [gates, incidents, sentiment]);
 
-  const handleResponseReceived = (response: CopilotResponse) => {
+  const handleResponseReceived = useCallback((response: CopilotResponse) => {
     setLatestResponse(response);
-  };
+  }, []);
 
   return {
     gates,

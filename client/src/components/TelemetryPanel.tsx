@@ -8,7 +8,7 @@ interface TelemetryPanelProps {
   sentiment: SentimentMetrics;
 }
 
-export const GateStatusFeed: React.FC<{ gates: GateTelemetry[] }> = ({ gates }) => {
+export const GateStatusFeed: React.FC<{ gates: GateTelemetry[] }> = React.memo(({ gates }) => {
   return (
     <div className="panel-card glass-card">
       <h3 className="panel-title">
@@ -55,9 +55,9 @@ export const GateStatusFeed: React.FC<{ gates: GateTelemetry[] }> = ({ gates }) 
       </div>
     </div>
   );
-};
+});
 
-export const IncidentFeed: React.FC<{ incidents: Incident[] }> = ({ incidents }) => {
+export const IncidentFeed: React.FC<{ incidents: Incident[] }> = React.memo(({ incidents }) => {
   return (
     <div className="panel-card glass-card">
       <h3 className="panel-title">
@@ -102,9 +102,9 @@ export const IncidentFeed: React.FC<{ incidents: Incident[] }> = ({ incidents })
       </div>
     </div>
   );
-};
+});
 
-export const SentimentFeed: React.FC<{ sentiment: SentimentMetrics }> = ({ sentiment }) => {
+export const SentimentFeed: React.FC<{ sentiment: SentimentMetrics }> = React.memo(({ sentiment }) => {
   return (
     <div className="panel-card glass-card text-center">
       <h3 className="panel-title text-left">
@@ -134,9 +134,9 @@ export const SentimentFeed: React.FC<{ sentiment: SentimentMetrics }> = ({ senti
       </div>
     </div>
   );
-};
+});
 
-export const TelemetryPanel: React.FC<TelemetryPanelProps> = ({ gates, incidents, sentiment }) => {
+export const TelemetryPanel: React.FC<TelemetryPanelProps> = React.memo(({ gates, incidents, sentiment }) => {
   return (
     <div className="telemetry-pane" role="region" aria-label="Live Telemetry Panel">
       <div className="telemetry-stream-header">
@@ -148,6 +148,6 @@ export const TelemetryPanel: React.FC<TelemetryPanelProps> = ({ gates, incidents
       <SentimentFeed sentiment={sentiment} />
     </div>
   );
-};
+});
 
 export default TelemetryPanel;
